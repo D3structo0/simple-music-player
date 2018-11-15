@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Custom Audio Player v.01</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="resources/music-album.png">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/wavesurfer.js"></script>
+
+</head>
+
+<body>
+    <div class="container">
+
+        <!--Header with icon and upload button-->
+
+        <div class="row top-header ">
+            <div class="col-xs-12" id="top-header-inner">
+                <img src="resources/music-album.png" id="top-icon" alt="Simple album icon" height="34" width="34">
+                <label id="upload-button" class="btn btn-primary" onclick="buttonLoadFile()">
+                    Open file
+                    <input id="upload-input" type="file" name="filePath" style="display: none;">
+                </button>
+            </div>
+        </div>
+
+        <!--My playlist-->
+        <div class="row playlist-main">
+            <div class="col-xs-12 scrollable-bar">
+                <div class="row playlist-header">
+                    <div class="col-xs-12">
+                        <p id="p-playlist">
+                            My playlist
+                        </p>
+                    </div>
+                </div>
+
+                <!--Placeholders for playlist-->
+
+                <div class="row playlist-element">
+                    <div id="kek" class="col-xs-12 song" onclick="selectTrack(this.id)">
+                        <p class="p-description">Joji - Test drive</p>
+                    </div>
+                </div>
+
+                <div class="row playlist-element">
+                    <div class="col-xs-12 song">
+                        <p>Joji - Test drive</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Equalizer-->
+
+        <div class="row controls-element">
+            <div class="col-xs-12" id="waveform-outter">
+                <div id="waveform">
+                </div>
+            </div>
+
+            <!--Song name-->
+
+            <div class="col-xs-12" id="song-name">
+                <p id="p-song-name">PLEASE SELECT OR IMPORT TRACK</p>
+            </div>
+
+            <!--Control buttons -->
+
+            <div class="col-xs-12" id="main-controls-inner">
+                <button type="button" id="button-prev" class="btn" onclick='buttonPreviousPress()'>
+                    <i class="fa fa-fast-backward"></i>
+                </button>
+
+                <button type="button" id="button-play-stop" class="btn" onclick='buttonPlayPress()'>
+                    <i id="play-stop-button" class="fa fa-play"></i>
+                </button>
+
+                <button type="button" id="button-next" class="btn" onclick='buttonNextPress()'>
+                    <i class="fa fa-fast-forward"></i>
+                </button>
+
+                <button type="button" id="button-add" class="btn" onclick='buttonAddPress()'>
+                    <i class="far fa-star"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <script src="js/scripts.js"></script>
+</body>
+</html>
