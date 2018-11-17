@@ -18,140 +18,206 @@
 
         <!--Header with icon and upload button-->
 
-        <div class="row top-header">
+        <div class="row" id="top-header">
             <div class="col-12 top-header-inner">
                 <img src="resources/music-album.png" id="top-icon" alt="simple album icon">
                 <label id="upload-button" class="btn btn-outline-success" onclick="buttonLoadFile()">
                     Open file
                     <input id="upload-input" type="file" name="filePath" style="display: none;">
+                </label>
             </div>
         </div>
 
         <!--My playlist-->
 
-        <div class="row playlist-main scrollable-bar">
-            <div class="col-12 playlist-header">
-                <p id="p-playlist">
+        <div class="row" id="scrollable-bar">
+            <div class="col-12">
+                <p class="p-playlist-header">
                     # My playlist
                 </p>
             </div>
 
             <!--Placeholders for playlist-->
 
-            <div class="col-12 playlist-element">
+            <div class="col-12">
                 <div id="kek0" class="song" onclick="selectTrack(this.id)">
-                    <p class="p-description">Joji - Test drive</p>
+                    <p>Joji - Test drive</p>
                 </div>
             </div>
 
-            <div class="col-12 playlist-element">
+            <div class="col-12">
                 <div id="kek1" class="song" onclick="selectTrack(this.id)">
-                    <p class="p-description">Action Bronson - Easy Rider</p>
+                    <p>Action Bronson - Easy Rider</p>
                 </div>
             </div>
 
-            <div class="col-12 playlist-element">
+            <div class="col-12">
                 <div id="kek2" class="song" onclick="selectTrack(this.id)">
-                    <p class="p-description">Tame Impala - Let it happen</p>
+                    <p>Tame Impala - Let it happen</p>
                 </div>
             </div>
 
-            <div class="col-12 playlist-element">
+            <div class="col-12">
                 <div id="kek3" class="song" onclick="selectTrack(this.id)">
-                    <p class="p-description">System of a down - Streamline</p>
+                    <p>System of a down - Streamline</p>
                 </div>
             </div>
 
-            <div class="col-12 playlist-element">
+            <div class="col-12">
                 <div id="kek4" class="song" onclick="selectTrack(this.id)">
-                    <p class="p-description">Hugo Toxx - V hajzlu (ft. Marat, Smack1)</p>
+                    <p>Hugo Toxx - V hajzlu (ft. Marat, Smack1)</p>
                 </div>
             </div>
 
-            <div class="col-12 playlist-element">
+            <div class="col-12">
                 <div id="kek5" class="song" onclick="selectTrack(this.id)">
-                    <p class="p-description">Cage the elephant - Trouble</p>
+                    <p>Cage the elephant - Trouble</p>
                 </div>
             </div>
 
-            <div class="col-12 playlist-element">
+            <div class="col-12">
                 <div id="kek6" class="song" onclick="selectTrack(this.id)">
-                    <p class="p-description">Boards of Canada - Dayvan Cowboy</p>
+                    <p>Boards of Canada - Dayvan Cowboy</p>
                 </div>
             </div>
 
-            <div class="col-12 playlist-element">
+            <div class="col-12">
                 <div id="kek7" class="song" onclick="selectTrack(this.id)">
-                    <p class="p-description">Apex Twin - Ageispolis</p>
+                    <p>Apex Twin - Ageispolis</p>
                 </div>
             </div>
 
-            <div class="col-12 playlist-element">
+            <div class="col-12">
                 <div id="kek8" class="song" onclick="selectTrack(this.id)">
-                    <p class="p-description">Netsky - Everyday</p>
+                    <p>Netsky - Everyday</p>
                 </div>
             </div>
 
-            <div class="col-12 playlist-element">
+            <div class="col-12">
                 <div id="kek9" class="song" onclick="selectTrack(this.id)">
-                    <p class="p-description">Joji - Yeah right</p>
+                    <p>Joji - Yeah right</p>
                 </div>
             </div>
 
-            <div class="col-12 playlist-element">
+            <div class="col-12">
                 <div id="kek10" class="song" onclick="selectTrack(this.id)">
-                    <p class="p-description">Massive Attack - Angel</p>
+                    <p>Massive Attack - Angel</p>
                 </div>
             </div>
 
-            <div class="col-12 playlist-element">
+            <div class="col-12">
                 <div id="kek11" class="song" onclick="selectTrack(this.id)">
-                    <p class="p-description">Moderat - Bad Kingdom</p>
+                    <p>Moderat - Bad Kingdom</p>
                 </div>
             </div>
 
-            <div class="col-12 playlist-element">
+            <div class="col-12">
                 <div id="kek12" class="song" onclick="selectTrack(this.id)">
-                    <p class="p-description">Moderat - Reminder</p>
+                    <p>Moderat - Reminder</p>
                 </div>
             </div>
 
-            <div class="col-12 playlist-element">
+            <div class="col-12">
                 <div id="kek13" class="song" onclick="selectTrack(this.id)">
-                    <p class="p-description">Apparat - Goodbye</p>
+                    <p>Apparat - Goodbye</p>
                 </div>
             </div>
 
-            <div class="col-12 playlist-element">
+            <div class="col-12">
                 <div id="kek14" class="song" onclick="selectTrack(this.id)">
-                    <p class="p-description">Queens Of The Stone Age - Little Sister</p>
+                    <p>Queens Of The Stone Age - Little Sister</p>
                 </div>
             </div>
 
-            <div class="col-12 playlist-element">
+            <div class="col-12">
                 <div id="kek15" class="song" onclick="selectTrack(this.id)">
-                    <p class="p-description">Linkin Park - My December</p>
+                    <p>Linkin Park - My December</p>
                 </div>
+            </div>
+
+            <div class="col-12">
+                <div id="kek12" class="song" onclick="selectTrack(this.id)">
+                    <p>Moderat - Reminder</p>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div id="kek13" class="song" onclick="selectTrack(this.id)">
+                    <p>Apparat - Goodbye</p>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div id="kek14" class="song" onclick="selectTrack(this.id)">
+                    <p>Queens Of The Stone Age - Little Sister</p>
+                </div>
+            </div>
+       
+
+            <div class="col-12">
+                <div id="kek15" class="song" onclick="selectTrack(this.id)">
+                    <p>Linkin Park - My December</p>
+                </div>
+            </div>
+            <div class="col-12">
+                <div id="kek4" class="song" onclick="selectTrack(this.id)">
+                    <p>Hugo Toxx - V hajzlu (ft. Marat, Smack1)</p>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div id="kek5" class="song" onclick="selectTrack(this.id)">
+                    <p>Cage the elephant - Trouble</p>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div id="kek6" class="song" onclick="selectTrack(this.id)">
+                    <p>Boards of Canada - Dayvan Cowboy</p>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div id="kek7" class="song" onclick="selectTrack(this.id)">
+                    <p>Apex Twin - Ageispolis</p>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div id="kek8" class="song" onclick="selectTrack(this.id)">
+                    <p>Netsky - Everyday</p>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div id="kek9" class="song" onclick="selectTrack(this.id)">
+                    <p>Joji - Yeah right</p>
+                </div>
+            </div>
+
+
+            <div class="col-12 pull-bottom" id="playlist-bottom">
+                <p>Created by Radek Cerny, 2018</p>
             </div>
         </div>
 
         <!--Equalizer-->
-
-        <div class="row controls-element">
+        <div class="row" id="controls-element">
             <div class="col-12" id="waveform-outter">
                 <div id="waveform">
+
                 </div>
             </div>
 
             <!--Song name-->
 
-            <div class="col-12" id="song-name-bar">
+            <div class="col-12">
                 <p id="p-song-name">SELECT OR IMPORT TRACK</p>
             </div>
 
             <!--Control buttons -->
 
-            <div class="col-12" id="main-controls-inner">
+            <div class="col-12" id="main-controls-outter">
                 <button type="button" id="button-prev" class="btn" onclick='buttonPreviousPress()'>
                     <i class="fa fa-fast-backward"></i>
                 </button>
@@ -169,7 +235,6 @@
                 </button>
             </div>
         </div>
-
     </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
