@@ -77,3 +77,24 @@ function buttonLoadFile() {
     // } 
     console.log("Upload button invoked");
 }
+
+// $(window).ready(function() {
+//         fitElements();
+// });
+
+
+$(window).on("load resize", function() {
+     fitElements();
+});
+
+// $(window).resize(function() {
+//     fitElements();
+// });
+
+function fitElements() {
+    var new_height = $(window).height() - $("#top-header").height() - $("#controls-element").height() ;
+    if (new_height > 0) {
+        $("#scrollable-bar").height(new_height-1);
+    }
+    console.log("Window resized " + $(window).height() + " " + $("#scrollable-bar").height() + " " + new_height);
+}
