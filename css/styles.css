@@ -16,6 +16,7 @@ body {
     border-radius: 3px;
     box-shadow: 2px 3px rgb(20, 20, 20);
     background-color: rgb(32, 32, 32);
+    /* min-width: 200px; */
 }
 
 #top-header {

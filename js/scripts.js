@@ -78,23 +78,54 @@ function buttonLoadFile() {
     console.log("Upload button invoked");
 }
 
-// $(window).ready(function() {
-//         fitElements();
-// });
-
-
 $(window).on("load resize", function() {
-     fitElements();
+    //fitElements();
+    fitElementsAlt();
+    //fitElementsAlt2();
 });
 
-// $(window).resize(function() {
-//     fitElements();
-// });
+/*Following function justifies the elements in the playlist using bootstrap rows and flexible* columns*/
 
 function fitElements() {
     var new_height = $(window).height() - $("#top-header").height() - $("#controls-element").height() ;
     if (new_height > 0) {
-        $("#scrollable-bar").height(new_height-1);
+        $("#scrollable-bar").height(new_height-0.5);
     }
     console.log("Window resized " + $(window).height() + " " + $("#scrollable-bar").height() + " " + new_height);
+}
+
+/*Following function justifies the elements in the playlist using padding, still being tested*/
+
+function fitElementsAlt() {
+    var new_padding = $(window).height() - $("#top-header").height() - $("#controls-element").height() - $("#scrollable-bar").height() - parseFloat($("#scrollable-bar").css("padding-top"), 10);
+    var new_height = $(window).height() - $("#top-header").height() - $("#controls-element").height() ;
+    
+    if (new_padding > 0 && $(window).height() >= ($("#top-header").height() + $("#controls-element").height() + $("#scrollable-bar").height() + parseFloat($("#scrollable-bar").css("padding-top"), 10)))  {
+         $("#scrollable-bar").css("padding-bottom", new_padding-1);
+    }
+    else if (new_height > 0){
+        $("#scrollable-bar").css("padding-bottom", 0);
+        $("#scrollable-bar").height(new_height-0.5);
+    }
+    console.log("Window resized " + $(window).height() + " = " + $("#top-header").height() + " + " + $("#scrollable-bar").height() + " + " + $("#controls-element").height() + " + "+ new_padding);
+    console.log(parseFloat($("#scrollable-bar").css("padding-top"), 10) );
+    console.log($("#top-header").height() + $("#scrollable-bar").height() + $("#controls-element").height() + new_padding);
+}
+
+/* need to finish 3rd*/
+
+function fitElementsAlt2() {
+    var new_padding = $(window).height() - $("#top-header").height() - $("#controls-element").height() - $("#scrollable-bar").height() - parseFloat($("#playlist-bottom").css("padding-top"), 10);
+    var new_height = $(window).height() - $("#top-header").height() - $("#controls-element").height() ;
+    
+    if (new_padding > 0 && $(window).height() >= ($("#top-header").height() + $("#controls-element").height() + $("#scrollable-bar").height() + parseFloat($("#scrollable-bar").css("padding-top"), 10)))  {
+         $("#playlist-bottom").css("padding-top", new_padding-1);
+    }
+    else if (new_height > 0){
+        $("#playlist-bottom").css("padding-top", 0);
+        $("#playlist-bottom").height(new_height-0.5);
+    }
+    console.log("Window resized " + $(window).height() + " = " + $("#top-header").height() + " + " + $("#scrollable-bar").height() + " + " + $("#controls-element").height() + " + "+ new_padding);
+    console.log(parseFloat($("#scrollable-bar").css("padding-top"), 10) );
+    console.log($("#top-header").height() + $("#scrollable-bar").height() + $("#controls-element").height() + new_padding);
 }
