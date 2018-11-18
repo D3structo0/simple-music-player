@@ -43,18 +43,19 @@ body {
     width: 35px;
     margin: 0.3em 15px;
 }
-
-@media only screen and (max-width: 768px) {
-    
-    .top-header-inner {
-        text-align: center;
-        margin: 0;
-    }
-    
+@media only screen and (max-width: 240px) {
     #top-icon {
         display: none;
     }
 
+    .top-header-inner {
+        text-align: center;
+        margin: 0;
+    }
+}
+
+@media only screen and (max-width: 767.98px) {
+        
     .song p {
         font-size: 0.8em !important;
         padding-bottom: 0.25em !important;
@@ -172,6 +173,9 @@ body {
     font-style: normal;
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     font-size: 0.9em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 #playlist-bottom p {
@@ -205,6 +209,7 @@ body {
     text-align: center;
     padding-top: 0.3em;
     padding-bottom: 0.5em;
+    margin-bottom: 2px;
     background-image: radial-gradient(ellipse at bottom, #101010, transparent);
 }
 
