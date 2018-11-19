@@ -215,7 +215,11 @@ body {
 }
 
 #button-prev, #button-play-stop, #button-next, #button-add {
-    margin: 0.2em;
+    margin: 0.15em;
     width: 45px;
     height: 45px;
 }
+
+/*#remove-song {
+    display: none/unset;
+}*/
