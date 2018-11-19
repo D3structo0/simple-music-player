@@ -21,9 +21,9 @@
         <div class="row" id="top-header">
             <div class="col-12 top-header-inner">
                 <img src="resources/music-album.png" id="top-icon" alt="simple album icon">
-                <label id="upload-button" class="btn btn-outline-success" onclick="buttonLoadFile()">
+                <label id="upload-button" class="btn btn-outline-success" onchange="buttonLoadFile()">
                     Open file
-                    <input id="upload-input" type="file" name="filePath" style="display: none;">
+                    <input id="upload-input" type="file" name="filePath" style="display: none;" multiple>
                 </label>
             </div>
         </div>
@@ -31,6 +31,13 @@
         <!--My playlist-->
 
         <div class="row" id="scrollable-bar">
+
+            <div class="col-12" id="playlist-local">
+                <p class="p-playlist-header">
+                    # Local files
+                    </p>
+                </div>
+
             <div class="col-12" id="playlist-top-header">
                 <p class="p-playlist-header">
                     # My playlist
@@ -39,13 +46,13 @@
 
             <!--Placeholders for playlist-->
 
-            <div class="col-12">
+            <!--<div class="col-12">
                 <div id="kek0" class="song" onclick="selectTrack(this.id)">
-                    <p>Joji - Test drive</p>
+                    <p> Joji - Test drive</p>
                 </div>
             </div>
 
-            <div class="col-12">
+           <div class="col-12">
                 <div id="kek1" class="song" onclick="selectTrack(this.id)">
                     <p>Action Bronson - Easy Rider</p>
                 </div>
@@ -63,7 +70,7 @@
                 </div>
             </div>
 
-            <!-- <div class="col-12">
+             <div class="col-12">
                 <div id="kek4" class="song" onclick="selectTrack(this.id)">
                     <p>Hugo Toxx - V hajzlu (ft. Marat, Smack1)</p>
                 </div>
@@ -211,7 +218,7 @@
             <!--Song name-->
 
             <div class="col-12">
-                <p id="p-song-name">SELECT OR IMPORT TRACK</p>
+                <p id="p-song-name">SELECT TRACK</p>
             </div>
 
             <!--Control buttons -->
