@@ -23,10 +23,10 @@ var song_id = 0;
 function buttonAddPress() {
     console.log("Button ADD invoked.");
     //get the right name of the song, etc
-    $('#playlist-top-header').after('<div class="col-12"><div class="song" id="song' + song_id + '" onclick="selectTrack(this.song' + song_id + ')"> <p>Song name - Number ' + song_id + '</p></div></div>');
+    $('#playlist-top-header').after('<div class="col-12"><div class="song" id="my-playlist-song-' + song_id + '" onclick="selectTrack(this.id)"> <p>Song name - Number ' + song_id + '</p></div></div>');
     song_id +=1;
     fitElements();
-    fitElements();
+    //fitElements();
 }
 
 var state = 'stop';
@@ -61,7 +61,7 @@ function buttonPlayStopPress() {
 
 function selectTrack(id) {
     wavesurfer.empty();
-    wavesurfer.load('http://ia902606.us.archive.org/35/items/shortpoetry_047_librivox/song_cjrg_teasdale_64kb.mp3');
+    wavesurfer.load(id);
 
     wavesurfer.on('ready', function () {   
         wavesurfer.play(); 
@@ -76,18 +76,27 @@ function selectTrack(id) {
     document.getElementById("p-song-name").innerText = document.getElementById(id).innerText.trim();
 }
 
+var local_id = 0;
+
 function buttonLoadFile() {
     var x = document.getElementById("upload-input");
-    // if (x.files.length == 1) {
-    //    console.log(x.files[0].name);
-    //     wavesurfer.loadBlob('https://fiddle.jshell.net/199a7c29-24e0-413d-b41c-c2a85f845089');     
-    // } 
+    for (var i = 0; i < x.files.length; i++) {
+        var blob = URL.createObjectURL(x.files[i]);
+        console.log(blob);
+        $('#playlist-local').after('<div class="col-12"><div class="song" id="' + blob + '" onclick="selectTrack(this.id)"> <p>' + x.files[i].name + '</p></div></div>');
+        
+        fitElements();
+        
+        blob.onload = function() {
+            window.URL.revokeObjectURL(this.src);
+          }
+    }
     console.log("Upload button invoked");
 }
 
 $(window).on("load resize", function() {
     fitElements();
-    //fitElements(); for some reason calling this function twice solves occasional glitch
+    fitElements(); //for some reason calling this function twice solves occasional glitch
 });
 
 /*Following function justifies the elements in the playlist using padding*/
@@ -103,7 +112,4 @@ function fitElements() {
         $("#scrollable-bar").css("padding-bottom", 0);
         $("#scrollable-bar").height(new_height-0.5);
     }
-    //console.log("Window resized " + $(window).height() + " = " + $("#top-header").height() + " + " + $("#scrollable-bar").height() + " + " + $("#controls-element").height() + " + "+ new_padding);
-    //console.log(parseFloat($("#scrollable-bar").css("padding-top"), 10) );
-    //console.log($("#top-header").height() + $("#scrollable-bar").height() + $("#controls-element").height() + new_padding);
 }
