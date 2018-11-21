@@ -32,7 +32,6 @@ function deleteFromPlaylist() {
 function buttonAddPress() {
     if (playing_id != null) {
         var song = $("#" + $('#' + playing_id).parent().attr('id'));
-        var playlist = $("#playlist-top-header");
         $("#playlist-top-header").after(song);
         fitElements();
     }
@@ -69,6 +68,16 @@ function buttonPlayStopPress() {
 /*function handling track selection*/
 
 function selectTrack(id) {
+    
+/*  $("#" + id).click(function(e) {
+        if($(e.target).is('.remove-song')) {
+            e.preventDefault();
+            $("#" + $("#" + id).parent().attr('id')).remove();
+            //console.log($("#" + id).parent().attr('id'));
+            return;
+        }
+    }); */
+
     wavesurfer.empty();
     wavesurfer.load(addToUrl(id));
     playing_id = id;
@@ -100,7 +109,7 @@ function buttonLoadFile() {
     var x = document.getElementById("upload-input");
     for (var i = 0; i < x.files.length; i++) {
         var blob = URL.createObjectURL(x.files[i]);
-        $('#playlist-local').after('<div class="col-12" id="song_' + song_id + '"><div class="song" id="' + parseBlob(blob) + '" onclick="selectTrack(this.id)"> <p><i class="far fa-trash-alt" id="remove-song"></i>' + x.files[i].name + '</p></div></div>');
+        $('#playlist-local').after('<div class="col-12" id="song_' + song_id + '"><div class="song" id="' + parseBlob(blob) + '" onclick="selectTrack(this.id)"> <p><i class="far fa-trash-alt remove-song" id="bin-' + parseBlob(blob) + '"></i>' + x.files[i].name + '</p></div></div>');
         song_id += 1;
         fitElements();
     }

@@ -237,3 +237,11 @@ body {
     width: 45px;
     height: 45px;
 }
+
+.remove-song {
+    padding-right: 1em;
+}
+
+.remove-song:hover{
+    color: #f3f3f3; 
+}
