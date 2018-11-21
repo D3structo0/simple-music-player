@@ -5,7 +5,7 @@ html, body {
   
 body {
     background-color: rgb(30, 30, 30) !important;
-    background-image: radial-gradient(ellipse at top, rgb(3, 5, 3), transparent);
+    background-image: radial-gradient(ellipse at top, rgb(32, 35, 32), transparent);
 }
 
 .container {
@@ -16,7 +16,6 @@ body {
     border-radius: 3px;
     box-shadow: 2px 3px rgb(20, 20, 20);
     background-color: rgb(32, 32, 32);
-    /* min-width: 200px; */
 }
 
 #top-header {
@@ -238,7 +237,3 @@ body {
     width: 45px;
     height: 45px;
 }
-
-/*#remove-song {
-    display: none/unset;
-}*/
