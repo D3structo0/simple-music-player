@@ -10,29 +10,35 @@ var wavesurfer = WaveSurfer.create({
     normalize: true
 });
 
-var state = 'stop';
-var tmp = document.getElementById("play-stop-button");
-var playing_id = '';
-var fav_num = 0;
+var state = 'stop'; //initialize the state
+var tmp = document.getElementById("play-stop-button"); // variable used for handling the play/stop button
+var playing_id = null; //initialize id of the currently playing song
+var song_id = 0;    //id counter
 
 function buttonPreviousPress() {
-    console.log("Button PREVIOUS invoked.");
-    //implement later
+    //implementation required
 }
 
 function buttonNextPress() {
-    console.log("Button NEXT invoked.");
-    //implement later
+    //implementation required
 }
 
-function buttonAddPress() {
-    console.log("Button ADD invoked. " + playing_id);
-    $("#playlist-top-header").appendTo('<div class="col-12" id="fav' + fav_num + '">');
-    fav_num += 1;
-    $("#fav" + playing_id).appendTo("#fav"+ fav_num);
-    //('<div class="col-12"><div class="song" id="' + playing_id + '" onclick="selectTrack(this.id)"> <p> ' + $(playing_id).innerText + '</p></div></div>');
-    fitElements();
+function deleteFromPlaylist() {
+    //implementation required
 }
+
+/*function for adding stuff to my playlist*/
+
+function buttonAddPress() {
+    if (playing_id != null) {
+        var song = $("#" + $('#' + playing_id).parent().attr('id'));
+        var playlist = $("#playlist-top-header");
+        $("#playlist-top-header").after(song);
+        fitElements();
+    }
+}
+
+/*function for handling the play/stop button*/
 
 function buttonPlayStopPress() {
 
@@ -58,14 +64,15 @@ function buttonPlayStopPress() {
         tmp.classList.remove("fa-pause");
         tmp.classList.add("fa-play");
     }
-    console.log("Button PLAY/STOP invoked, music is " + state);
 }
+
+/*function handling track selection*/
 
 function selectTrack(id) {
     wavesurfer.empty();
-    wavesurfer.load(id);
+    wavesurfer.load(addToUrl(id));
     playing_id = id;
-    console.log(playing_id);
+    console.log("Playing: " + id);
 
     wavesurfer.on('ready', function () {
         wavesurfer.play();
@@ -79,26 +86,37 @@ function selectTrack(id) {
     document.getElementById("p-song-name").innerText = document.getElementById(id).innerText.trim();
 }
 
+/*function for loading files from local storage*/ 
+
+function parseBlob(s) {
+    return s.slice(10);
+}
+
+function addToUrl(s) {
+    return "blob:null/" + s;
+}
+
 function buttonLoadFile() {
     var x = document.getElementById("upload-input");
     for (var i = 0; i < x.files.length; i++) {
         var blob = URL.createObjectURL(x.files[i]);
-        $('#playlist-local').after('<div class="col-12"><div class="song" id="' + blob + '" onclick="selectTrack(this.id)"> <p><i class="far fa-trash-alt" id="remove-song"></i>' + x.files[i].name + '</p></div></div>');
-        
+        $('#playlist-local').after('<div class="col-12" id="song_' + song_id + '"><div class="song" id="' + parseBlob(blob) + '" onclick="selectTrack(this.id)"> <p><i class="far fa-trash-alt" id="remove-song"></i>' + x.files[i].name + '</p></div></div>');
+        song_id += 1;
         fitElements();
-
-        blob.onload = function () {
-            window.URL.revokeObjectURL(this.src);
-        }
     }
-    console.log("Upload button invoked");
+    
+    blob.onload = function () {
+        window.URL.revokeObjectURL(this.src);
+    }
 }
+
+/* adjusting page on load/resize event*/
 
 $(window).on("load resize", function () {
     fitElements();
 });
 
-/*Following function justifies the elements in the playlist using padding*/
+/*following function justifies the elements in the playlist using padding*/
 
  function fitElements() {  
     var window_height = $(window).height();
@@ -110,21 +128,17 @@ $(window).on("load resize", function () {
     var new_padding = 0;
 
     $('#scrollable-bar').children().each(function () {
-        //console.log($(this).height());
         playlist_elements_total_size += $(this).height();
     });
 
-    //console.log(playlist_elements_total_size);
-    //console.log(space_available);
-
     if (space_available >= playlist_elements_total_size) {
         new_padding = space_available - playlist_elements_total_size;
-        $("#scrollable-bar").css("padding-bottom", new_padding);
-        $("#scrollable-bar").height(space_available - new_padding-1);
+        $("#scrollable-bar").css("padding-bottom", new_padding - 1);
+        $("#scrollable-bar").height(space_available - new_padding - 0.5);
     }
     
     if (space_available < playlist_elements_total_size) {
         $("#scrollable-bar").css("padding-bottom", 0);
-        $("#scrollable-bar").height(space_available-1);
+        $("#scrollable-bar").height(space_available - 1);
     }
 }
