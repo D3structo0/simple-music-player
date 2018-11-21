@@ -32,6 +32,7 @@ function buttonAddPress() {
     $("#fav" + playing_id).appendTo("#fav"+ fav_num);
     //('<div class="col-12"><div class="song" id="' + playing_id + '" onclick="selectTrack(this.id)"> <p> ' + $(playing_id).innerText + '</p></div></div>');
     fitElements();
+    //fitElements();
 }
 
 function buttonPlayStopPress() {
@@ -84,7 +85,7 @@ function buttonLoadFile() {
     for (var i = 0; i < x.files.length; i++) {
         var blob = URL.createObjectURL(x.files[i]);
         $('#playlist-local').after('<div class="col-12"><div class="song" id="' + blob + '" onclick="selectTrack(this.id)"> <p><i class="far fa-trash-alt" id="remove-song"></i>' + x.files[i].name + '</p></div></div>');
-        
+      
         fitElements();
 
         blob.onload = function () {
@@ -98,7 +99,7 @@ $(window).on("load resize", function () {
     fitElements();
 });
 
-/*Following function justifies the elements in the playlist using padding*/
+/*Following function justifies the elements in the playlist using padding, need check*/
 
  function fitElements() {  
     var window_height = $(window).height();
@@ -126,5 +127,5 @@ $(window).on("load resize", function () {
     if (space_available < playlist_elements_total_size) {
         $("#scrollable-bar").css("padding-bottom", 0);
         $("#scrollable-bar").height(space_available-1);
-    }
+   }
 }
