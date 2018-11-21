@@ -85,6 +85,7 @@ function buttonLoadFile() {
     for (var i = 0; i < x.files.length; i++) {
         var blob = URL.createObjectURL(x.files[i]);
         $('#playlist-local').after('<div class="col-12"><div class="song" id="' + blob + '" onclick="selectTrack(this.id)"> <p><i class="far fa-trash-alt" id="remove-song"></i>' + x.files[i].name + '</p></div></div>');
+      
         fitElements();
 
         blob.onload = function () {
@@ -96,21 +97,35 @@ function buttonLoadFile() {
 
 $(window).on("load resize", function () {
     fitElements();
-    fitElements(); //for some reason calling this function twice solves occasional glitch
 });
 
 /*Following function justifies the elements in the playlist using padding, need check*/
 
-function fitElements() {
-    var new_padding = $(window).height() - $("#top-header").height() - $("#controls-element").height() - $("#scrollable-bar").height() - parseFloat($("#scrollable-bar").css("padding-top"), 10);
-    var new_height = $(window).height() - $("#top-header").height() - $("#controls-element").height();
+ function fitElements() {  
+    var window_height = $(window).height();
+    var header_height = $("#top-header").height();
+    var controls_height = $("#controls-element").height();
+    var space_available = window_height - header_height - controls_height;
 
-    if (new_padding > 0 && $(window).height() > ($("#top-header").height() + $("#controls-element").height() + $("#scrollable-bar").height() + parseFloat($("#scrollable-bar").css("padding-top"), 10))) {
-        $("#scrollable-bar").css("padding-bottom", new_padding - 0.5);
-        //$("#scrollable-bar").height(new_height - 0.5);
+    var playlist_elements_total_size = 0;
+    var new_padding = 0;
+
+    $('#scrollable-bar').children().each(function () {
+        console.log($(this).height());
+        playlist_elements_total_size += $(this).height();
+    });
+
+    console.log(playlist_elements_total_size);
+    console.log(space_available);
+
+    if (space_available >= playlist_elements_total_size) {
+        new_padding = space_available - playlist_elements_total_size;
+        $("#scrollable-bar").css("padding-bottom", new_padding);
+        $("#scrollable-bar").height(space_available - new_padding-1);
     }
-    else if (new_height > 0) {
+    
+    if (space_available < playlist_elements_total_size) {
         $("#scrollable-bar").css("padding-bottom", 0);
-        $("#scrollable-bar").height(new_height - 0.5);
-    }
+        $("#scrollable-bar").height(space_available-1);
+   }
 }
