@@ -85,7 +85,7 @@ body {
 
 #scrollable-bar {
     overflow-y: scroll;
-    min-height: 150px;
+    min-height: 60px;
 }
 
 ::-webkit-scrollbar {
@@ -116,11 +116,31 @@ body {
     margin-bottom: 0.35em;
     color: #efefef;    
     border-bottom-style: solid;
+    border-top-style: solid;
     border-width: 1px;
     border-color: #484848;
     font-style: normal;
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     font-size: 1.1em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.p-playlist-header-2 {
+    text-align: left;
+    padding: 0.5em 0 0em 0;
+    margin-bottom: 0.35em;
+    color: #efefef;    
+    border-bottom-style: solid;
+    border-width: 1px;
+    border-color: #484848;
+    font-style: normal;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size: 1.1em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .song p {
@@ -214,7 +234,11 @@ body {
 }
 
 #button-prev, #button-play-stop, #button-next, #button-add {
-    margin: 0.2em;
+    margin: 0.15em;
     width: 45px;
     height: 45px;
 }
+
+/*#remove-song {
+    display: none/unset;
+}*/

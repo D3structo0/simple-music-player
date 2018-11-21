@@ -8,51 +8,53 @@ var wavesurfer = WaveSurfer.create({
     responsive: true,
     height: 80,
     normalize: true
-    });
+});
+
+var state = 'stop';
+var tmp = document.getElementById("play-stop-button");
+var playing_id = '';
+var fav_num = 0;
 
 function buttonPreviousPress() {
     console.log("Button PREVIOUS invoked.");
+    //implement later
 }
 
 function buttonNextPress() {
     console.log("Button NEXT invoked.");
+    //implement later
 }
-
-var song_id = 0;
 
 function buttonAddPress() {
-    console.log("Button ADD invoked.");
-    //get the right name of the song, etc
-    $('#playlist-top-header').after('<div class="col-12"><div class="song" id="song' + song_id + '" onclick="selectTrack(this.song' + song_id + ')"> <p>Song name - Number ' + song_id + '</p></div></div>');
-    song_id +=1;
-    fitElements();
+    console.log("Button ADD invoked. " + playing_id);
+    $("#playlist-top-header").appendTo('<div class="col-12" id="fav' + fav_num + '">');
+    fav_num += 1;
+    $("#fav" + playing_id).appendTo("#fav"+ fav_num);
+    //('<div class="col-12"><div class="song" id="' + playing_id + '" onclick="selectTrack(this.id)"> <p> ' + $(playing_id).innerText + '</p></div></div>');
     fitElements();
 }
 
-var state = 'stop';
-var tmp = document.getElementById("play-stop-button");
-
 function buttonPlayStopPress() {
-    
-    if (state == 'stop') {     
-        wavesurfer.on('ready', function () {   
-            wavesurfer.play(); 
-            state = 'playing'; 
+
+    if (state == 'stop') {
+        wavesurfer.on('ready', function () {
+            wavesurfer.play();
+            state = 'playing';
             tmp.classList.remove("fa-play");
-            tmp.classList.add("fa-pause"); 
+            tmp.classList.add("fa-pause");
         });
     }
 
-    else if (state == 'paused') {     
-        wavesurfer.play(); 
-        state = 'playing'; 
+    else if (state == 'paused') {
+        wavesurfer.play();
+        state = 'playing';
         tmp.classList.remove("fa-play");
-        tmp.classList.add("fa-pause"); 
+        tmp.classList.add("fa-pause");
     }
 
-    else if (state == 'playing'){
-        wavesurfer.pause();  
-        state = 'paused';   
+    else if (state == 'playing') {
+        wavesurfer.pause();
+        state = 'paused';
         tmp.classList.remove("fa-pause");
         tmp.classList.add("fa-play");
     }
@@ -61,49 +63,68 @@ function buttonPlayStopPress() {
 
 function selectTrack(id) {
     wavesurfer.empty();
-    wavesurfer.load('http://ia902606.us.archive.org/35/items/shortpoetry_047_librivox/song_cjrg_teasdale_64kb.mp3');
+    wavesurfer.load(id);
+    playing_id = id;
+    console.log(playing_id);
 
-    wavesurfer.on('ready', function () {   
-        wavesurfer.play(); 
-        
+    wavesurfer.on('ready', function () {
+        wavesurfer.play();
+
         if (state == "paused" || state == "stop") {
-            state ='playing';  
+            state = 'playing';
             tmp.classList.remove("fa-play");
             tmp.classList.add("fa-pause");
         }
     });
-
     document.getElementById("p-song-name").innerText = document.getElementById(id).innerText.trim();
 }
 
 function buttonLoadFile() {
     var x = document.getElementById("upload-input");
-    // if (x.files.length == 1) {
-    //    console.log(x.files[0].name);
-    //     wavesurfer.loadBlob('https://fiddle.jshell.net/199a7c29-24e0-413d-b41c-c2a85f845089');     
-    // } 
+    for (var i = 0; i < x.files.length; i++) {
+        var blob = URL.createObjectURL(x.files[i]);
+        $('#playlist-local').after('<div class="col-12"><div class="song" id="' + blob + '" onclick="selectTrack(this.id)"> <p><i class="far fa-trash-alt" id="remove-song"></i>' + x.files[i].name + '</p></div></div>');
+        
+        fitElements();
+
+        blob.onload = function () {
+            window.URL.revokeObjectURL(this.src);
+        }
+    }
     console.log("Upload button invoked");
 }
 
-$(window).on("load resize", function() {
+$(window).on("load resize", function () {
     fitElements();
-    //fitElements(); for some reason calling this function twice solves occasional glitch
 });
 
 /*Following function justifies the elements in the playlist using padding*/
 
-function fitElements() {
-    var new_padding = $(window).height() - $("#top-header").height() - $("#controls-element").height() - $("#scrollable-bar").height() - parseFloat($("#scrollable-bar").css("padding-top"), 10);
-    var new_height = $(window).height() - $("#top-header").height() - $("#controls-element").height() ;
+ function fitElements() {  
+    var window_height = $(window).height();
+    var header_height = $("#top-header").height();
+    var controls_height = $("#controls-element").height();
+    var space_available = window_height - header_height - controls_height;
+
+    var playlist_elements_total_size = 0;
+    var new_padding = 0;
+
+    $('#scrollable-bar').children().each(function () {
+        console.log($(this).height());
+        playlist_elements_total_size += $(this).height();
+    });
+
+    console.log(playlist_elements_total_size);
+    console.log(space_available);
+
+    if (space_available >= playlist_elements_total_size) {
+        new_padding = space_available - playlist_elements_total_size;
+        $("#scrollable-bar").css("padding-bottom", new_padding);
+        $("#scrollable-bar").height(space_available - new_padding-1);
+    }
     
-    if (new_padding > 0 && $(window).height() >= ($("#top-header").height() + $("#controls-element").height() + $("#scrollable-bar").height() + parseFloat($("#scrollable-bar").css("padding-top"), 10)))  {
-         $("#scrollable-bar").css("padding-bottom", new_padding-1);
-    }
-    else if (new_height > 0){
+    if (space_available < playlist_elements_total_size) {
         $("#scrollable-bar").css("padding-bottom", 0);
-        $("#scrollable-bar").height(new_height-0.5);
+        $("#scrollable-bar").height(space_available-1);
     }
-    //console.log("Window resized " + $(window).height() + " = " + $("#top-header").height() + " + " + $("#scrollable-bar").height() + " + " + $("#controls-element").height() + " + "+ new_padding);
-    //console.log(parseFloat($("#scrollable-bar").css("padding-top"), 10) );
-    //console.log($("#top-header").height() + $("#scrollable-bar").height() + $("#controls-element").height() + new_padding);
 }

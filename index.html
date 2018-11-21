@@ -21,9 +21,9 @@
         <div class="row" id="top-header">
             <div class="col-12 top-header-inner">
                 <img src="resources/music-album.png" id="top-icon" alt="simple album icon">
-                <label id="upload-button" class="btn btn-outline-success" onclick="buttonLoadFile()">
+                <label id="upload-button" class="btn btn-outline-success" onchange="buttonLoadFile()">
                     Open file
-                    <input id="upload-input" type="file" name="filePath" style="display: none;">
+                    <input id="upload-input" type="file" name="filePath" style="display: none;" multiple>
                 </label>
             </div>
         </div>
@@ -31,169 +31,18 @@
         <!--My playlist-->
 
         <div class="row" id="scrollable-bar">
+
+            <div class="col-12" id="playlist-local">
+                <p class="p-playlist-header-2">
+                    # Local files
+                </p>
+            </div>
+
             <div class="col-12" id="playlist-top-header">
                 <p class="p-playlist-header">
                     # My playlist
                 </p>
             </div>
-
-            <!--Placeholders for playlist-->
-
-            <div class="col-12">
-                <div id="kek0" class="song" onclick="selectTrack(this.id)">
-                    <p>Joji - Test drive</p>
-                </div>
-            </div>
-
-            <div class="col-12">
-                <div id="kek1" class="song" onclick="selectTrack(this.id)">
-                    <p>Action Bronson - Easy Rider</p>
-                </div>
-            </div>
-
-            <div class="col-12">
-                <div id="kek2" class="song" onclick="selectTrack(this.id)">
-                    <p>Tame Impala - Let it happen</p>
-                </div>
-            </div>
-
-            <div class="col-12">
-                <div id="kek3" class="song" onclick="selectTrack(this.id)">
-                    <p>System of a down - Streamline</p>
-                </div>
-            </div>
-
-            <!-- <div class="col-12">
-                <div id="kek4" class="song" onclick="selectTrack(this.id)">
-                    <p>Hugo Toxx - V hajzlu (ft. Marat, Smack1)</p>
-                </div>
-            </div>
-
-            <div class="col-12">
-                <div id="kek5" class="song" onclick="selectTrack(this.id)">
-                    <p>Cage the elephant - Trouble</p>
-                </div>
-            </div>
-
-            <div class="col-12">
-                <div id="kek6" class="song" onclick="selectTrack(this.id)">
-                    <p>Boards of Canada - Dayvan Cowboy</p>
-                </div>
-            </div>
-
-            <div class="col-12">
-                <div id="kek7" class="song" onclick="selectTrack(this.id)">
-                    <p>Apex Twin - Ageispolis</p>
-                </div>
-            </div>
-
-            <div class="col-12">
-                <div id="kek8" class="song" onclick="selectTrack(this.id)">
-                    <p>Netsky - Everyday</p>
-                </div>
-            </div>
-
-            <div class="col-12">
-                <div id="kek9" class="song" onclick="selectTrack(this.id)">
-                    <p>Joji - Yeah right</p>
-                </div>
-            </div>
-
-            <div class="col-12">
-                <div id="kek10" class="song" onclick="selectTrack(this.id)">
-                    <p>Massive Attack - Angel</p>
-                </div>
-            </div>
-
-            <div class="col-12">
-                <div id="kek11" class="song" onclick="selectTrack(this.id)">
-                    <p>Moderat - Bad Kingdom</p>
-                </div>
-            </div>
-
-            <div class="col-12">
-                <div id="kek12" class="song" onclick="selectTrack(this.id)">
-                    <p>Moderat - Reminder</p>
-                </div>
-            </div>
-
-            <div class="col-12">
-                <div id="kek13" class="song" onclick="selectTrack(this.id)">
-                    <p>Apparat - Goodbye</p>
-                </div>
-            </div>
-
-            <div class="col-12">
-                <div id="kek14" class="song" onclick="selectTrack(this.id)">
-                    <p>Queens Of The Stone Age - Little Sister</p>
-                </div>
-            </div>
-
-            <div class="col-12">
-                <div id="kek15" class="song" onclick="selectTrack(this.id)">
-                    <p>Linkin Park - My December</p>
-                </div>
-            </div>
-
-            <div class="col-12">
-                <div id="kek12" class="song" onclick="selectTrack(this.id)">
-                    <p>Moderat - Reminder</p>
-                </div>
-            </div>
-
-            <div class="col-12">
-                <div id="kek13" class="song" onclick="selectTrack(this.id)">
-                    <p>Apparat - Goodbye</p>
-                </div>
-            </div>
-
-            <div class="col-12">
-                <div id="kek14" class="song" onclick="selectTrack(this.id)">
-                    <p>Queens Of The Stone Age - Little Sister</p>
-                </div>
-            </div>
-
-
-            <div class="col-12">
-                <div id="kek15" class="song" onclick="selectTrack(this.id)">
-                    <p>Linkin Park - My December</p>
-                </div>
-            </div>
-            <div class="col-12">
-                <div id="kek4" class="song" onclick="selectTrack(this.id)">
-                    <p>Hugo Toxx - V hajzlu (ft. Marat, Smack1)</p>
-                </div>
-            </div>
-
-            <div class="col-12">
-                <div id="kek5" class="song" onclick="selectTrack(this.id)">
-                    <p>Cage the elephant - Trouble</p>
-                </div>
-            </div>
-
-            <div class="col-12">
-                <div id="kek6" class="song" onclick="selectTrack(this.id)">
-                    <p>Boards of Canada - Dayvan Cowboy</p>
-                </div>
-            </div>
-
-            <div class="col-12">
-                <div id="kek7" class="song" onclick="selectTrack(this.id)">
-                    <p>Apex Twin - Ageispolis</p>
-                </div>
-            </div>
-
-            <div class="col-12">
-                <div id="kek8" class="song" onclick="selectTrack(this.id)">
-                    <p>Netsky - Everyday</p>
-                </div>
-            </div>
-
-            <div class="col-12">
-                <div id="kek9" class="song" onclick="selectTrack(this.id)">
-                    <p>Joji - Yeah right</p>
-                </div>
-            </div>  -->
 
             <div class="col-12 pull-bottom" id="playlist-bottom">
                 <p>Created by Radek Cerny, 2018</p>
@@ -211,7 +60,7 @@
             <!--Song name-->
 
             <div class="col-12">
-                <p id="p-song-name">SELECT OR IMPORT TRACK</p>
+                <p id="p-song-name">SELECT TRACK</p>
             </div>
 
             <!--Control buttons -->
@@ -235,6 +84,7 @@
             </div>
         </div>
     </div>
+
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
