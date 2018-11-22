@@ -14,6 +14,7 @@ var state = 'stop'; //initialize the state
 var tmp = document.getElementById("play-stop-button"); // variable used for handling the play/stop button
 var playing_id = null; //initialize id of the currently playing song
 var song_id = 0;    //id counter
+var domain = "";
 
 function buttonPreviousPress() {
     //implementation required
@@ -98,11 +99,15 @@ function selectTrack(id) {
 /*function for loading files from local storage*/ 
 
 function parseBlob(s) {
-    return s.slice(10);
+    var pom = s.lastIndexOf("/");
+    domain = s.slice(0, pom + 1);
+    console.log("(parseBlob) Domain: " + domain + ", ID: " + s.slice(pom + 1));
+    return s.slice( pom + 1);
 }
 
 function addToUrl(s) {
-    return "blob:null/" + s;
+    console.log("(addToUrl) Domain + id: " + domain + s);
+    return domain + s;
 }
 
 function buttonLoadFile() {
